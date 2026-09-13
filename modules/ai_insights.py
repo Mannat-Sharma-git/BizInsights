@@ -228,7 +228,7 @@ def show_ai_insights(data: dict):
                 help="Get your key at https://aistudio.google.com/app/apikey"
             )
         with col_btn:
-            st.markdown("<br>", unsafe_allow_html=True)
+            st.write("")
             if st.button("✅ Save Key", use_container_width=True):
                 if api_key_input.strip():
                     st.session_state["gemini_key"] = api_key_input.strip()
