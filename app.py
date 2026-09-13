@@ -32,33 +32,6 @@ from modules.reports     import show_reports
 from modules.ai_insights import show_ai_insights
 
 
-# ── Custom Styles ──────────────────────────────────────────────────────────────
-st.markdown("""
-<style>
-/* Sidebar header */
-[data-testid="stSidebarNav"] { display: none; }
-.sidebar-logo {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #1e3a5f;
-    padding: 0.5rem 0 0.25rem;
-    border-bottom: 2px solid #e5e7eb;
-    margin-bottom: 0.5rem;
-}
-/* Metric delta colours */
-[data-testid="stMetricDelta"] { font-size: 0.85rem; }
-/* DataFrame enhancements */
-[data-testid="stDataFrame"] { border-radius: 8px; }
-/* Expander styling */
-.streamlit-expanderHeader { font-weight: 600; }
-/* General padding */
-.block-container { padding-top: 1rem; padding-bottom: 1rem; }
-/* Hide Streamlit footer */
-footer { visibility: hidden; }
-</style>
-""", unsafe_allow_html=True)
-
-
 # ── Authentication Gate ────────────────────────────────────────────────────────
 require_auth()
 
@@ -85,21 +58,15 @@ NAV_ITEMS = [
 
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown(f"""
-    <div class="sidebar-logo">🏢 NovaTech Solutions</div>
-    <div style="font-size:0.78rem;color:#6b7280;margin-bottom:0.75rem">Business Intelligence Platform</div>
-    """, unsafe_allow_html=True)
+    st.title("🏢 NovaTech Solutions")
+    st.caption("Business Intelligence Platform")
+    st.divider()
 
     # User info
-    role_colors = {"Administrator": "#ef4444", "Manager": "#f59e0b", "Employee": "#10b981"}
-    role_color  = role_colors.get(user["role"], "#6b7280")
-    st.markdown(f"""
-    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;margin-bottom:12px">
-        <div style="font-weight:600;font-size:0.95rem">{user['avatar']} {user['name']}</div>
-        <div style="font-size:0.78rem;color:{role_color};font-weight:600;margin-top:2px">{user['role']}</div>
-        <div style="font-size:0.73rem;color:#9ca3af;margin-top:2px">{user['email']}</div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"**{user['avatar']} {user['name']}**")
+    st.markdown(f"Role: `{user['role']}`")
+    st.caption(user['email'])
+    st.divider()
 
     # Navigation
     st.markdown("**Navigation**")
