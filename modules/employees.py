@@ -162,14 +162,8 @@ def show_employees(data: dict):
         with col_t:
             st.markdown(f"**{sel_emp_radar}**")
             for k, v in metrics.items():
-                bar_color = "#10b981" if v >= 75 else ("#f59e0b" if v >= 50 else "#ef4444")
-                st.markdown(
-                    f"**{k}:** {v:.1f}%"
-                    f"""<div style="background:#e5e7eb;border-radius:4px;height:8px;margin:2px 0 8px">
-                    <div style="background:{bar_color};width:{min(v,100):.0f}%;height:100%;border-radius:4px"></div>
-                    </div>""",
-                    unsafe_allow_html=True
-                )
+                st.markdown(f"**{k}:** {v:.1f}%")
+                st.progress(min(int(v), 100))
 
     # ── Full Table ────────────────────────────────────────────────────
     st.markdown("---")
