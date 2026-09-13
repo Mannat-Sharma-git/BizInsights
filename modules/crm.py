@@ -156,13 +156,7 @@ def show_crm(data: dict):
 
             # Health bar
             score = row["health_score"]
-            color = "#10b981" if score >= 70 else ("#f59e0b" if score >= 45 else "#ef4444")
-            st.markdown(
-                f"""<div style="background:#e5e7eb;border-radius:4px;height:10px;margin:4px 0">
-                <div style="background:{color};width:{score}%;height:100%;border-radius:4px"></div>
-                </div>""",
-                unsafe_allow_html=True
-            )
+            st.progress(int(score), text=f"Health Score: {score:.1f} / 100")
 
     # ── Data Table ────────────────────────────────────────────────────
     st.markdown("---")
